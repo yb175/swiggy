@@ -1,14 +1,9 @@
 import ImageGridCards from "../assets/imageGridCards";
 import { useRef } from "react";
+import grocery from "../assets/grocery";
 export default function App() {
   const scrollRef = useRef(null);
-  const leftScroll =()=>{
-    scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
-    
-  }
-  const rightScroll =()=>{
-    scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
-  }
+  const groceryRef = useRef(null);
   return (
     // Header Part 
     <>
@@ -94,41 +89,94 @@ export default function App() {
       </div>
     </div>
     <div className="flex flex-wrap  items-center justify-center w-full">
-      <button
-        onClick={leftScroll}
-        className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md transition"
-      >
-        ←
-      </button>
-      <div className="w-[60%] h-[20%] overflow-x-scroll scrollbar-hide" ref={scrollRef}>
-         
-        <div 
-          className="grid grid-rows-2 auto-cols-max gap-4 grid-flow-col"
-          style={{ width: 'max-content' }}
-        >
-          {
-            ImageGridCards.map((item)=>{
-              return (
-                <a key={item.id}>
-                  <img
-                    src= {`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${item.imageId}`}
-
-                    alt="veggies"
-                    className="w-[144px] h-[180px]"
-                  >
-                  </img>
-                </a>
-              )
-            })
+      <h1 className="text-2xl font-bold text-center mt-4">
+        Popular Categories
+      </h1>
+      <div className="flex items-center justify-center gap-4 my-4">
+        <button
+          onClick={() =>
+            scrollRef.current.scrollBy({ left: -300 , behavior: "smooth" })
           }
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md transition"
+        >
+          ←
+        </button>
+        <div
+          className="w-[60%] overflow-x-scroll scrollbar-hide"
+          ref={scrollRef}
+        >
+          <div
+            className="grid grid-rows-2 auto-cols-max gap-4 grid-flow-col scrollbar-hide"
+            style={{ width: "max-content" }}
+          >
+            {ImageGridCards.map((item) => (
+              <a key={item.id}>
+                <img
+                  src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${item.imageId}`}
+                  alt="veggies"
+                  className="w-[144px] h-[180px]"
+                />
+              </a>
+            ))}
           </div>
         </div>
         <button
-          onClick={rightScroll}
+          onClick={() =>
+            scrollRef.current.scrollBy({ left: 300, behavior: "smooth" })
+          }
           className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md transition"
         >
           →
-        </button> 
+        </button>
+      </div>
+
+      {/* SECOND GROCERY SECTION */}
+      <div className="flex flex-col items-center justify-center w-full">
+      <h1 className="text-2xl font-bold text-center mt-4">
+        Shop Groceries on Instamart
+      </h1>
+      <div className="flex items-center justify-center gap-4 my-4 w-[100%]" >
+        <button
+          onClick={() =>
+            groceryRef.current.scrollBy({ left: -300, behavior: "smooth" })
+          }
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md transition"
+        >
+          ←
+        </button>
+        <div
+          className="w-[60%] overflow-x-scroll scrollbar-hide"
+          ref={groceryRef}
+        >
+          <div
+            className="grid grid-rows-1 auto-cols-max gap-4 grid-flow-col"
+            style={{ width: "max-content" }}
+          >
+            {grocery.map((item) => (
+              <div key={item.id} className="flex flex-col items-center">
+              <a>
+                <img
+                  src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/${item.imageId}`}
+                  className="w-[144px] h-[180px]"
+                  alt="grocery item"
+                />
+              </a>
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+        <button
+          onClick={() =>
+            groceryRef.current.scrollBy({ left: 300, behavior: "smooth" })
+          }
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md transition"
+        >
+          →
+        </button>
+      </div>
+      </div>
     </div>
     </>
   );
