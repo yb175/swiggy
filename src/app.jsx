@@ -1,6 +1,9 @@
 import ImageGridCards from "../assets/imageGridCards";
 import { useRef } from "react";
 import grocery from "../assets/grocery";
+import restaurants from "../assets/dineData";
+import DineCards from  "./cards/dineCards.jsx"
+console.log(restaurants);
 export default function App() {
   const scrollRef = useRef(null);
   const groceryRef = useRef(null);
@@ -160,6 +163,7 @@ export default function App() {
                   className="w-[144px] h-[180px]"
                   alt="grocery item"
                 />
+                <h2>{item.action.text}</h2>
               </a>
               </div>
             ))}
@@ -176,6 +180,16 @@ export default function App() {
           →
         </button>
       </div>
+      </div>
+      <h2 className="text-2xl font-bold text-center mt-4">
+        Discover best restaurants on Dineout
+      </h2>
+      <div className="flex flex-wrap items-center justify-center gap-4 p-4 md:p-10 w-[100%] overflow-x-scroll">
+      {
+        restaurants.map((item) => (
+          <DineCards key={item.info.id} dineData={item} />
+        ))
+      }
       </div>
     </div>
     </>
