@@ -89,3 +89,6 @@
 ```
 
 # Integrating Shimmer Effect 
+# Load Data by using redux-store So that we would not fetch data again and again 
+
+# Implementing Redux 

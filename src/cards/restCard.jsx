@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function RestCard({ restaurant }) {
     const {
         cloudinaryImageId,
@@ -10,6 +11,7 @@ export default function RestCard({ restaurant }) {
     } = restaurant.info;
 
     return (
+        <Link to={`/menu/${restaurant.info.id}`} className="no-underline">
         <div className="w-[321px] h-[340px] m-4 p-4 rounded-lg shadow-lg flex flex-col items-center 
         justify-start relative bg-white transform transition duration-500 hover:-translate-y-2">
             <div className="relative">
@@ -34,5 +36,6 @@ export default function RestCard({ restaurant }) {
 
             <div className="mt-1 text-xs text-gray-500">{areaName}</div>
         </div>
+        </Link>
     );
 }
