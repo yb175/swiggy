@@ -92,3 +92,6 @@
 # Load Data by using redux-store So that we would not fetch data again and again 
 
 # Implementing Redux 
+
+# Kai baar aisa hoga ki jo data hum dhund rahe h wo data kissi aur k andar nested hoga 
+

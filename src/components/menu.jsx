@@ -3,6 +3,8 @@ import { useState, useEffect,useRef } from "react";
 import Spinner from "../uiComponents/spinners/spinner";
 import { Star } from "lucide-react";
 import OfferCard from "../cards/offerCard";
+import MenuItems from "../cards/menuItems";
+
 import { scrollLeft, scrollRight } from "../uiComponents/scroll";
 export default function Menu() {
   let params = useParams();
@@ -15,12 +17,19 @@ export default function Menu() {
       const response = await fetch(proxyServer + resturant);
       const data = await response.json();
       console.log(
-        data.data
+        data.data.cards[5].groupedCard.cardGroupMap.REGULAR.cards || []
       );
       setRestInfo(data);
     }
     fetchMenu();
   }, []);
+
+  const menuData = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    || [];
+  const menuItems = menuData
+    .filter(item => item.card?.card?.title)
+    .map(item => item.card.card)
+
   const { avgRatingString, totalRatingsString, areaName } =
     restInfo?.data?.cards[2]?.card?.card?.info || {};
   const cuisines = restInfo?.data?.cards[2]?.card?.card?.info.cuisines || [];
@@ -129,6 +138,7 @@ export default function Menu() {
         </svg>
       </button>
     </div>
+    <MenuItems menuItems={menuItems}></MenuItems>
     </div>
   );
 }
