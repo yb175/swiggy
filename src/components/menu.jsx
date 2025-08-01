@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Spinner from "../uiComponents/spinners/spinner";
 import { Star } from "lucide-react";
 import OfferCard from "../cards/offerCard";
@@ -16,20 +16,21 @@ export default function Menu() {
       const resturant = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.69892&lng=77.1607391&restaurantId=${params.id}&submitAction=ENTER`;
       const response = await fetch(proxyServer + resturant);
       const data = await response.json();
+      console.log(data);
       console.log(
-        data.data.cards[5].groupedCard.cardGroupMap.REGULAR.cards || []
+        data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || []
       );
       setRestInfo(data);
     }
     fetchMenu();
   }, []);
-
-  const menuData = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-    || [];
+  const menuData =
+    restInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+  console.log(menuData);
   const menuItems = menuData
-    .filter(item => item.card?.card?.title)
-    .map(item => item.card.card)
-
+    .map((item) => item.card?.card)
+    .filter((card) => card?.itemCards || card?.carousel);
+  console.log(menuItems);
   const { avgRatingString, totalRatingsString, areaName } =
     restInfo?.data?.cards[2]?.card?.card?.info || {};
   const cuisines = restInfo?.data?.cards[2]?.card?.card?.info.cuisines || [];
@@ -91,54 +92,62 @@ export default function Menu() {
           {deliveryTime}-40 mins
         </div>
       </div>
-       <div className="w-full flex items-center justify-center gap-4 mt-10">
-      {/* Left Button */}
-      <button
-        onClick={()=>scrollLeft(menuRef)}
-        className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md transition"
-        aria-label="Scroll Left"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-gray-700"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+      <div className="w-full flex items-center justify-center gap-4 mt-10">
+        {/* Left Button */}
+        <button
+          onClick={() => scrollLeft(menuRef)}
+          className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md transition"
+          aria-label="Scroll Left"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
 
-      {/* Scrollable Offer List */}
-      <div
-        ref={menuRef}
-        className="w-[70%] grid grid-flow-col auto-cols-max overflow-x-auto gap-4 px-2 scrollbar-hide scroll-smooth"
-      >
-        {offers.map((offer) => (
-          <OfferCard key={offer.info.offerIds[0]} offer={offer.info} />
-        ))}
+        {/* Scrollable Offer List */}
+        <div
+          ref={menuRef}
+          className="w-[70%] grid grid-flow-col auto-cols-max overflow-x-auto gap-4 px-2 scrollbar-hide scroll-smooth"
+        >
+          {offers.map((offer) => (
+            <OfferCard key={offer.info.offerIds[0]} offer={offer.info} />
+          ))}
+        </div>
+
+        {/* Right Button */}
+        <button
+          onClick={() => scrollRight(menuRef)}
+          className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md transition"
+          aria-label="Scroll Right"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
       </div>
-
-      {/* Right Button */}
-      <button
-        onClick={()=>scrollRight(menuRef)}
-        className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md transition"
-        aria-label="Scroll Right"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-gray-700"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-    <MenuItems menuItems={menuItems}></MenuItems>
+      <MenuItems menuItems={menuItems}></MenuItems>
     </div>
   );
 }
