@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-export default function MenuDisplay({ item, foodSelected }) {
+export default function MenuDisplay({ item, foodSelected, searchQuery }) {
   const [open, setOpen] = useState(true);
   if (foodSelected == "veg" ) {
     return (
@@ -16,6 +16,7 @@ export default function MenuDisplay({ item, foodSelected }) {
           <>
             {item?.carousel
               ? item?.carousel?.
+              filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => dish?.dish?.info?.isVeg).
               map((dish) => (
                   <div
@@ -53,6 +54,7 @@ export default function MenuDisplay({ item, foodSelected }) {
                 ))
               : 
               item?.itemCards?.
+              filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => dish?.card?.info?.isVeg).
               map((dish) => (
                   <div
@@ -107,6 +109,7 @@ export default function MenuDisplay({ item, foodSelected }) {
           <>
             {item?.carousel
               ? item?.carousel?.
+              filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => !dish?.dish?.info?.isVeg).
               map((dish) => (
                   <div
@@ -144,6 +147,7 @@ export default function MenuDisplay({ item, foodSelected }) {
                 ))
               : 
               item?.itemCards?.
+              filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => !dish?.card?.info?.isVeg).
               map((dish) => (
                   <div
@@ -197,7 +201,10 @@ export default function MenuDisplay({ item, foodSelected }) {
       {open && (
         <>
           {item?.carousel
-            ? item?.carousel?.map((dish) => (
+            
+            ? item?.carousel?.
+            filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
+            map((dish) => (
                 <div
                   key={dish?.dish?.info?.id}
                   className="flex items-center justify-between p-2 border-b border-gray-200"
@@ -231,7 +238,9 @@ export default function MenuDisplay({ item, foodSelected }) {
                   </div>
                 </div>
               ))
-            : item?.itemCards?.map((dish) => (
+            : item?.itemCards?.
+            filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
+            map((dish) => (
                 <div
                   key={dish?.card?.info?.id}
                   className="flex items-center justify-between p-2 border-b border-gray-200"
