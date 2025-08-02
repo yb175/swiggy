@@ -16,7 +16,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
           <>
             {item?.carousel
               ? item?.carousel?.
-              filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => dish?.dish?.info?.isVeg).
               map((dish) => (
                   <div
@@ -54,7 +53,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
                 ))
               : 
               item?.itemCards?.
-              filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => dish?.card?.info?.isVeg).
               map((dish) => (
                   <div
@@ -109,7 +107,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
           <>
             {item?.carousel
               ? item?.carousel?.
-              filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => !dish?.dish?.info?.isVeg).
               map((dish) => (
                   <div
@@ -147,7 +144,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
                 ))
               : 
               item?.itemCards?.
-              filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
               filter((dish) => !dish?.card?.info?.isVeg).
               map((dish) => (
                   <div
@@ -203,7 +199,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
           {item?.carousel
             
             ? item?.carousel?.
-            filter((dish)=> dish?.dish?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
             map((dish) => (
                 <div
                   key={dish?.dish?.info?.id}
@@ -239,7 +234,6 @@ export default function MenuDisplay({ item, foodSelected, searchQuery }) {
                 </div>
               ))
             : item?.itemCards?.
-            filter((dish)=> dish?.card?.info?.name.toLowerCase().includes(searchQuery.toLowerCase())).
             map((dish) => (
                 <div
                   key={dish?.card?.info?.id}

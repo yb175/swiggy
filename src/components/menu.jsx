@@ -4,12 +4,14 @@ import Spinner from "../uiComponents/spinners/spinner";
 import { Star } from "lucide-react";
 import OfferCard from "../cards/offerCard";
 import MenuItems from "../cards/menuItems";
+import { Outlet } from "react-router";
 
 import { scrollLeft, scrollRight } from "../uiComponents/scroll";
 export default function Menu() {
   let params = useParams();
   const menuRef = useRef(null);
   const [restInfo, setRestInfo] = useState({});
+  
   useEffect(() => {
     async function fetchMenu() {
       const proxyServer = "https://cors-anywhere.herokuapp.com/";
@@ -42,6 +44,7 @@ export default function Menu() {
     restInfo.data.cards[3].card.card.gridElements.infoWithStyle.offers;
   return (
     <div className="flex flex-col items-center justify-center w-full h-full gap-3">
+      <Outlet></Outlet>
       <div className="w-[70%] flex flex-col items-start justify-centeralign-center mt-40">
         <h1 className="text-3xl font-bold">
           {restInfo?.data?.cards[0]?.card?.card?.text}

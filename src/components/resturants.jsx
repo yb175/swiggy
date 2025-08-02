@@ -3,6 +3,7 @@ import RestCard from "../cards/restCard";
 import Shimmar from "../cards/shimmer";
 import { restData } from "../slice/slice1";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "./header";
 
 export default function Restaurants() {
   // Redux state ko directly access karo
@@ -28,6 +29,8 @@ export default function Restaurants() {
     );
   }
   return (
+    <>
+      <Header />
     <div className="w-full flex flex-col items-center justify-center">
       <div className="flex flex-col w-full items-center justify-center">
         <h1 className="text-3xl font-bold">Best Resturants in Delhi</h1>
@@ -38,5 +41,6 @@ export default function Restaurants() {
         </div>
       </div>
     </div>
+    </>
   );
 }
