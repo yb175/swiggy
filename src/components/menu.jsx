@@ -44,7 +44,6 @@ export default function Menu() {
     restInfo.data.cards[3].card.card.gridElements.infoWithStyle.offers;
   return (
     <div className="flex flex-col items-center justify-center w-full h-full gap-3">
-      <Outlet></Outlet>
       <div className="w-[70%] flex flex-col items-start justify-centeralign-center mt-40">
         <h1 className="text-3xl font-bold">
           {restInfo?.data?.cards[0]?.card?.card?.text}

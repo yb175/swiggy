@@ -1,5 +1,11 @@
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { addToCart, increamentQty, decreamentQty } from "../slice/slice2";
 export default function MenuCard({ menuItem }) {
-  console.log(` I am menuItem ${menuItem}`);
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  console.log(cartItems);
+  const dispatch = useDispatch();
+  const cnt = cartItems.find((item) => item.id === menuItem.id)?.qty || 0;
   return (
     <div
       key={menuItem.id}
@@ -24,9 +30,36 @@ export default function MenuCard({ menuItem }) {
           alt={menuItem.name}
           className="w-25 h-25 rounded-md object-cover"
         />
-        <button className="w-30 bg-orange-500 text-white px-4 py-2 rounded-md ml-4">
-          Add
-        </button>
+        {cnt === 0 ? (
+          <button
+            onClick={() => {
+              dispatch(addToCart(menuItem));
+            }}
+            className="bg-orange-500 hover:bg-orange-600 transition-all duration-200 text-white font-semibold px-6 py-2 rounded-full shadow-md"
+          >
+            Add
+          </button>
+        ) : (
+          <div className="flex items-center space-x-4 bg-white border border-gray-300 rounded-full px-4 py-1 shadow-md">
+            <button
+              onClick={() => {
+                dispatch(decreamentQty(menuItem.id));
+              }}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-8 h-8 rounded-full text-center leading-8 shadow"
+            >
+              −
+            </button>
+            <span className="font-medium text-gray-700">{cnt}</span>
+            <button
+              onClick={() => {
+                dispatch(increamentQty(menuItem.id));
+              }}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-8 h-8 rounded-full text-center leading-8 shadow"
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ export default function Home() {
       <input type="text" className="text-black font-medium text-3xl w-[100%] text-center bg-white outline-0 rounded h-15" placeholder="Search for Restaurants" />
       </div>
       <div className="flex flex-row items-center justify-center  gap-4 md:gap-8 p-4 md:p-10">
-          <Link to="/resturants">
+          <Link to="/secondaryHome/resturants">
             <img 
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png"  
             alt="veggies"

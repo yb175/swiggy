@@ -1,6 +1,8 @@
 import { ShoppingCart } from "lucide-react";
-
+import { useSelector } from "react-redux";
+import { Link }  from "react-router";
 export default function Header() {
+  const cnt = useSelector((store) => store.cart.cnt);
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -18,10 +20,12 @@ export default function Header() {
           <button className="hover:text-orange-500">Sign In</button>
 
           {/* Cart Icon (no count) */}
+          <Link to="/secondaryHome/cart">
           <button className="flex items-center gap-1 hover:text-orange-500" >
             <ShoppingCart className="w-5 h-5" />
-            Cart(0) 
+            Cart({cnt}) 
           </button>
+          </Link>
         </nav>
 
         {/* Mobile: Only Cart */}

@@ -1,10 +1,12 @@
 import MenuDisplay from "./menuDisplay";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Outlet } from "react-router";
 import { Search } from "lucide-react";
 
 export default function MenuItems({ menuItems }) {
   const navigate = useNavigate();
+  const [doSearch, setdoSearch] = useState(false);
   console.log(`is menuItems arr : ${Array.isArray(menuItems)}`);
   const [selectedOption, setSelectedOption] = useState(null);
   if (!menuItems || menuItems.length === 0) {
@@ -42,15 +44,25 @@ xl p-6 flex flex-col gap-3 border border-gray-200"
       setSelectedOption("non-veg");
     }
   }
+  if(doSearch){
+    return(
+      <div className="w-[70%] bg-white shadow-md rounded-3xl p-6 flex flex-col gap-3 border border-gray-200">
+        <div className=" w-[100%] mx-auto mt-4 relative flex justify-center align-center">
+          <Outlet />
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="w-[70%] bg-white shadow-md rounded-3xl p-6 flex flex-col gap-3 border border-gray-200">
       <div className="w-full max-w-md mx-auto mt-4 relative">
         <button
-          onClick={() =>
+          onClick={() =>{
             navigate(`/menu/${menuData[0].parentId}/search`, {
               state: { menuData: menuData },
             })
-          }
+            setdoSearch(true) ; 
+          }}
           className="w-full px-5 py-3 pr-12 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent shadow-sm transition duration-200 placeholder:text-gray-400"
         >
           {" "}
