@@ -152,7 +152,7 @@ export default function Home() {
           <h1 className="text-xl md:text-2xl font-bold text-center mt-2 md:mt-4">
             Shop Groceries on Instamart
           </h1>
-          <div className="flex items-center justify-center gap-2 md:gap-4 my-2 md:my-4 w-full">
+          <div className="flex items-center justify-center gap-2 md:gap-4 my-2 md:my-4 w-full align-center">
             <button
               onClick={() => scrollLeft(groceryRef)}
               className="hidden md:flex bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full w-8 h-8 md:w-10 md:h-10 items-center justify-center shadow-md transition"
@@ -163,7 +163,7 @@ export default function Home() {
               className="w-full md:w-[80%] overflow-x-scroll scrollbar-hide px-2"
               ref={groceryRef}
             >
-              <div className="flex gap-2 md:gap-4" style={{ width: "max-content" }}>
+              <div className="flex gap-2 md:gap-4 justify-center align-center" style={{ width: "max-content" }}>
                 {grocery.slice(0, 5).map((item) => (
                   <div key={item.id} className="flex flex-col items-center">
                     <img
