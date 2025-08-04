@@ -1,9 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { addToCart, increamentQty, decreamentQty } from "../slice/slice2";
+import { useState, useEffect } from "react";
+import {
+  addToCart,
+  increamentQty,
+  decreamentQty,
+  clearCart,
+} from "../slice/slice2";
 export default function MenuCard({ menuItem }) {
   const cartItems = useSelector((store) => store.cart.cartItems);
-  console.log(cartItems);
+  const restId = useSelector((store) => store.cart.restId);
+  
   const dispatch = useDispatch();
   const cnt = cartItems.find((item) => item.id === menuItem.id)?.qty || 0;
   return (
@@ -11,6 +17,7 @@ export default function MenuCard({ menuItem }) {
       key={menuItem.id}
       className="flex items-center justify-between p-2 border-b border-gray-200"
     >
+      
       <div className="w-[70%] flex flex-col">
         <h3 className="text-lg font-medium">{menuItem.name}</h3>
         <p className="text-sm text-gray-600 font-semibold">
@@ -33,7 +40,12 @@ export default function MenuCard({ menuItem }) {
         {cnt === 0 ? (
           <button
             onClick={() => {
-              dispatch(addToCart(menuItem));
+              if (restId === null) {
+                dispatch(addToCart(menuItem));
+              } else {
+                
+                dispatch(clearCart(menuItem));
+              }
             }}
             className="bg-orange-500 hover:bg-orange-600 transition-all duration-200 text-white font-semibold px-6 py-2 rounded-full shadow-md"
           >

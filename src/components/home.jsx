@@ -75,20 +75,20 @@ export default function Home() {
             className="w-[326px] h-[300px]"
             />
           </Link>
-           <a>
+           <Link to="/secondaryHome/resturants">
             <img 
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b5c57bbf-df54-4dad-95d1-62e3a7a8424d_IM3BU.png"  
             alt="veggies"
             className="w-[326px] h-[300px]"
             />
-          </a>
-           <a>
+          </Link>
+           <Link to="/secondaryHome/resturants">
             <img 
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b6d9b7ab-91c7-4f72-9bf2-fcd4ceec3537_DO3BU.png"  
             alt="veggies"
             className="w-[326px] h-[300px]"
             />
-          </a>
+          </Link>
       </div>
     </div>
     <div className="flex flex-wrap  items-center justify-center w-full">

@@ -11,7 +11,6 @@ export default function Menu() {
   let params = useParams();
   const menuRef = useRef(null);
   const [restInfo, setRestInfo] = useState({});
-  
   useEffect(() => {
     async function fetchMenu() {
       const proxyServer = "https://cors-anywhere.herokuapp.com/";
@@ -60,7 +59,8 @@ export default function Menu() {
         </div>
 
         {/* Cuisines */}
-        <div className="text-orange-500 underline text-sm font-semibold space-x-1">
+        <div className="text-orange-500 underline text-sm font-semibold space-x-1">        # Swiggy React Clone
+        
           {cuisines.map((cuisine, index) => (
             <span key={index}>
               {cuisine}
