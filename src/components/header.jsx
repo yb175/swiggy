@@ -4,7 +4,7 @@ import { Link }  from "react-router";
 export default function Header() {
   const cnt = useSelector((store) => store.cart.cnt);
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md fixed top-0 z-50 w-full ">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         
         {/* Logo */}

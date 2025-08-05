@@ -48,11 +48,7 @@ export default function MenuCard({ menuItem }) {
         {cnt === 0 ? (
           <button
             onClick={() => {
-              if (restId === null) {
-                dispatch(addToCart(menuItem));
-              } else {
-                dispatch(clearCart(menuItem));
-              }
+              dispatch(addToCart({ ...menuItem}));
             }}
             className="bg-orange-500 hover:bg-orange-600 transition-all duration-200 text-white font-semibold px-4 py-1 sm:px-6 sm:py-2 rounded-full shadow-md text-sm sm:text-base w-16 sm:w-auto"
           >

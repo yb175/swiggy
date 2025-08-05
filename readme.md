@@ -16,7 +16,7 @@
 
 ## 🎥 Demo Preview
 
-Coming Soon! (You can add Loom, GIFs, or local recordings later)
+[![Watch the video](https://img.youtube.com/vi/iEXpqKlHiJI/hqdefault.jpg)](https://youtu.be/kWQlHbq0Y3I)
 
 <!-- Example:
 ![Demo](https://github.com/your-username/swiggy-clone/assets/demo.gif)
